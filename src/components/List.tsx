@@ -17,12 +17,14 @@ const ulStyles: React.CSSProperties = {
 }
 
 const  List = React.memo((props:ListProps)=>{
+    const listItems = props.items.map(item=>{
+
+        return (<ListItem key={item.id} item={item}></ListItem>)
+    })
+
     return (<>
         <ul style={ulStyles}>
-            {props.items.map(item=>{
-
-                return (<ListItem key={item.id} item={item}></ListItem>)
-            })}
+            {listItems}
         </ul>
     </>)
 })

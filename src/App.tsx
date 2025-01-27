@@ -5,7 +5,7 @@ import { Item } from './components/ListItem'
 
 
 function App() {
-  let items:Item[] = [
+  const [items,setItems] = useState([
     {
       id:1,
       name:'test1'
@@ -22,8 +22,7 @@ function App() {
       id:4,
       name:'test4'
     }
-  ]
-  
+  ])
   const [text,setText]=useState('')
   const container = useRef<HTMLInputElement>(null)
   const focus = ()=>{
@@ -36,7 +35,8 @@ function App() {
     if(event.key === "Enter"){
       const id = items.length+1;
       const item:Item = {id,name:text}
-      items =  [...items,item];
+      setItems([...items,item]);
+      console.log(items)
       setText('')
     }
   }
@@ -51,7 +51,7 @@ function App() {
   return (
     <>
       <div>
-        <input ref={container} value={text} defaultValue={text} onChange={onChangeInput} onKeyDown={handleKeyPress}></input>
+        <input ref={container} value={text} onChange={onChangeInput} onKeyDown={handleKeyPress}></input>
         <button onClick={focus}>фокус</button>
       </div>
       <List items={items}></List>
